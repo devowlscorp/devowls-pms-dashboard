@@ -12,4 +12,4 @@
 
 | Requirement ID | Description | Source File | Status |
 | :--- | :--- | :--- | :--- |
-| - | 등록된 세부 백로그가 없습니다. | - | - |
+| `USERQUESTIONS` | USERQUESTIONS | [`ideas/USERQUESTIONS.md`](./human-sandbox/ideas/USERQUESTIONS.md) | 📅 TODO |
