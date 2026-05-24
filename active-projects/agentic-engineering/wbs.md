@@ -1,6 +1,6 @@
 # 📊 Agentic Engineering v3.0 - WBS (Work Breakdown Structure)
 
-> **최종 동기화 시각**: 2026-05-24T06:12:06.042Z
+> **최종 동기화 시각**: 2026-05-24T08:57:42.976Z
 > **원격 저장소**: [Agentic-Engineering-v3.0](https://github.com/devowlscorp/Agentic-Engineering-v3.0)
 
 ---
@@ -29,7 +29,7 @@ EPIC (wbs/epic-xx.md)
 
 | Epic | Name | Status | REQs | Detail |
 |---|---|---|---|---|
-| **EPIC-01** | Foundation Setup | 📅 TODO | REQ-0101~0004 | [epic-01.md](wbs/epic-01.md) |
+| **EPIC-01** | Foundation Setup | ✅ DONE | REQ-0101~0004 | [epic-01.md](wbs/epic-01.md) |
 | **EPIC-02** | Public UI — 3 Layer | 📅 TODO | REQ-0201~0009 | [epic-02.md](wbs/epic-02.md) |
 | **EPIC-03** | Admin Panel | 📅 TODO | REQ-0301~0013 | [epic-03.md](wbs/epic-03.md) |
 
@@ -40,9 +40,9 @@ EPIC (wbs/epic-xx.md)
 | REQ ID | Epic | WBS Code | Feature Name | Status | Task Contracts |
 |---|---|---|---|---|---|
 | **REQ-0101** | EPIC-01 | 1.1.1 | Nuxt 4 Init + Dockerfile | ✅ DONE | — |
-| **REQ-0102** | EPIC-01 | 1.1.2 | DB Schema + Prisma Migrate | 📅 TODO | ✅ DONE |
-| **REQ-0103** | EPIC-01 | 1.1.3 | Better-Auth Setup | 📅 TODO | ✅ DONE |
-| **REQ-0104** | EPIC-01 | 1.1.4 | MinIO S3 Wrapper | 📅 TODO | ✅ DONE |
+| **REQ-0102** | EPIC-01 | 1.1.2 | DB Schema + Prisma Migrate | ✅ DONE | ✅ DONE |
+| **REQ-0103** | EPIC-01 | 1.1.3 | Better-Auth Setup | ✅ DONE | ✅ DONE |
+| **REQ-0104** | EPIC-01 | 1.1.4 | MinIO S3 Wrapper | ✅ DONE | ✅ DONE |
 | **REQ-0201** | EPIC-02 | 2.1.1 | Game Map Engine (Canvas 2D) | 📅 TODO | — |
 | **REQ-0202** | EPIC-02 | 2.1.2 | Main Page Layer 1 | 📅 TODO | — |
 | **REQ-0203** | EPIC-02 | 2.1.3 | Card Roller Layer 2 | 📅 TODO | — |
