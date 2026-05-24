@@ -6,3 +6,4 @@
 | :--- | :--- | :--- | :--- | :--- |
 | `checkpoint-design` | Design Phase Checkpoint | Agent | DOING | 2026-05-24 |
 | `checkpoint-implementation` | Implementation Phase Checkpoint | Agent | DOING | 2026-05-24 |
+| `todo-0202-02` | todo-0202-02: CompanyHUD.vue + CategoryModal.vue | Agent | UNCLAIMED | Agent: — | 2026-05-24 |
