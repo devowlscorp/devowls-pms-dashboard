@@ -1,40 +1,98 @@
 # 📊 Agentic Engineering v3.0 - WBS (Work Breakdown Structure)
 
-> **최종 동기화 시각**: 2026-05-22T21:14:33.771Z
+> **최종 동기화 시각**: 2026-05-24T03:36:15.408Z
 > **원격 저장소**: [Agentic-Engineering-v3.0](https://github.com/devowlscorp/Agentic-Engineering-v3.0)
 
 ---
 
-# 📊 Work Breakdown Structure (WBS) Master Task Register
+# WBS Master Index — DevOwls Gaze
 
-> **Single Source of Truth (SSOT)**: This is the unified WBS register. All tasks must reside here flatly to prevent token overhead and multi-file coordination complexity.
-
-## 🛠️ Master Task Register
-
-| Task ID | Epic | WBS Code | Task Name | Status | Assignee | Last Updated |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **REQ-0001** | Core | 1.1.1 | Project Setup & Initial Layout | 📅 TODO | Unassigned | 2026-05-22 |
-| **REQ-0002** | Core | 1.1.2 | Database Architecture Sync | 📅 TODO | Unassigned | 2026-05-22 |
+> **SSOT**: Epic 상세는 `wbs/epic-xx.md`. REQ 명세는 `task-descriptions/req-xxxx-*.md`. Task Contract는 `tasks/todo-xxxx.md`.  
+> 이 파일은 Epic 인덱스 + 전체 상태 대시보드.
 
 ---
 
-## 🚦 WBS Status Definitions
+## 5-Layer Structure
 
-* **📅 TODO**: Task is backlog/unclaimed.
-* **🏗️ DOING**: Task has been claimed by a session/developer and is actively in progress.
-* **✅ DONE**: Verification logs have been recorded in `.agms/testing/logs/` and changes are synced.
-* **⏸️ PAUSED**: Task is blocked or temporarily suspended.
+```
+EPIC (wbs/epic-xx.md)
+  └── REQ — Feature (task-descriptions/req-[0-9]{4}-*.md)
+        └── Micro REQ (task-descriptions/req-[0-9]{4}-[0-9]{2}-*.md)
+              └── TODO — Task Contract (tasks/todo-[0-9]{4}(-[0-9]{2})?.md)
+                    └── STEP — Implementation steps (todo 내부 섹션)
+                          └── Acceptance Criteria & verify.mjs
+```
+
+---
+
+## Epic Status
+
+| Epic | Name | Status | REQs | Detail |
+|---|---|---|---|---|
+| **EPIC-01** | Foundation Setup | 📅 TODO | REQ-0101~0004 | [epic-01.md](wbs/epic-01.md) |
+| **EPIC-02** | Public UI — 3 Layer | 📅 TODO | REQ-0201~0009 | [epic-02.md](wbs/epic-02.md) |
+| **EPIC-03** | Admin Panel | 📅 TODO | REQ-0301~0013 | [epic-03.md](wbs/epic-03.md) |
 
 ---
 
-## 🤖 Developer & Agent Protocol
+## REQ Master Register
 
-1. **Flat Execution**: All task contracts live under `.agms/plan/tasks/todo-xxxx.md`.
-2. **Strict Naming**: File and task IDs must match exactly (e.g. `todo-0001-setup.md` maps to `REQ-0001`).
-3. **No Splitting**: Never split this master register into separate files unless explicit permission is granted.
-4. **Verification Gate**: Do not mark status as **✅ DONE** until `verify` tests pass.
-
-"Reality guides the WBS. Not assumptions."
+| REQ ID | Epic | WBS Code | Feature Name | Status | Task Contracts |
+|---|---|---|---|---|---|
+| **REQ-0101** | EPIC-01 | 1.1.1 | Nuxt 4 Init + Dockerfile | 📅 TODO | ✅ DONE |
+| **REQ-0102** | EPIC-01 | 1.1.2 | DB Schema + Prisma Migrate | 📅 TODO | — |
+| **REQ-0103** | EPIC-01 | 1.1.3 | Better-Auth Setup | 📅 TODO | — |
+| **REQ-0104** | EPIC-01 | 1.1.4 | MinIO S3 Wrapper | 📅 TODO | — |
+| **REQ-0201** | EPIC-02 | 2.1.1 | Game Map Engine (Canvas 2D) | 📅 TODO | — |
+| **REQ-0202** | EPIC-02 | 2.1.2 | Main Page Layer 1 | 📅 TODO | — |
+| **REQ-0203** | EPIC-02 | 2.1.3 | Card Roller Layer 2 | 📅 TODO | — |
+| **REQ-0204** | EPIC-02 | 2.1.4 | Project Detail Layer 3 | 📅 TODO | — |
+| **REQ-0205** | EPIC-02 | 2.1.5 | Public Read API | 📅 TODO | — |
+| **REQ-0301** | EPIC-03 | 3.1.1 | Admin Login | 📅 TODO | — |
+| **REQ-0302** | EPIC-03 | 3.1.2 | Admin Dashboard CRUD | 📅 TODO | — |
+| **REQ-0303** | EPIC-03 | 3.1.3 | Screenshot Upload + Reorder | 📅 TODO | — |
+| **REQ-0304** | EPIC-03 | 3.1.4 | Admin Write API | 📅 TODO | — |
 
 ---
+
+## Execution Order
+
+```
+EPIC-01 (blocking)
+  → [병렬] REQ-0101
+         → [병렬] REQ-0102 + REQ-0103 + REQ-0104
+
+EPIC-01 완료 후 EPIC-02 + EPIC-03 병렬 착수
+
+EPIC-02:
+  [병렬] REQ-0205 (depends: REQ-0102, REQ-0104) + REQ-0201 (depends: REQ-0101)
+       → REQ-0202 (depends: REQ-0201)
+             → REQ-0203 (depends: REQ-0202, REQ-0205)
+                   → REQ-0204 (depends: REQ-0203, REQ-0205)
+
+EPIC-03:
+  [병렬] REQ-0301 + REQ-0304
+       → REQ-0302
+             → REQ-0303
+```
+
+---
+
+## Status Definitions
+
+| Symbol | Meaning |
+|---|---|
+| 📅 TODO | Backlog / unclaimed |
+| 🏗️ DOING | Claimed by active session |
+| ✅ DONE | verify.mjs 통과 + synced |
+| ⏸️ PAUSED | Blocked |
+
+---
+
+## Protocol
+1. `/stage-define` 실행 → Epic/REQ 기반 todo-*.md 생성
+2. 에이전트는 `tasks/todo-xxxx.md` CLAIMED 후 착수
+3. Micro REQ는 `todo-xxxx-xx.md` 단위로 단일 세션 처리
+4. verify.mjs 통과 전 DONE 금지
+
 *Decision Register: [decisions.md](decisions.md)*

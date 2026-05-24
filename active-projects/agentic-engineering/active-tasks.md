@@ -4,4 +4,5 @@
 
 | Task ID | Task Description | Assignee | Status | Last Modified |
 | :--- | :--- | :--- | :--- | :--- |
-| - | 🎉 현재 진행 중인 활성 태스크가 없습니다. 모두 완료되었거나 대기 중입니다. | - | - | - |
+| `checkpoint-design` | Design Phase Checkpoint | Agent | DOING | 2026-05-24 |
+| `checkpoint-implementation` | Implementation Phase Checkpoint | Agent | DOING | 2026-05-24 |

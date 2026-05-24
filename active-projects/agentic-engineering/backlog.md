@@ -6,10 +6,15 @@
 
 | Epic | Status | Progress | Notes |
 | :--- | :--- | :--- | :--- |
-| - | 🎉 대기 중인 에픽이 없습니다. 모든 에픽이 완료되었습니다. | - | - |
+| **EPIC-01** | Foundation Setup | 📅 TODO | REQ-0101~0004 | [epic-01.md](wbs/epic-01.md) |
+| **EPIC-02** | Public UI — 3 Layer | 📅 TODO | REQ-0201~0009 | [epic-02.md](wbs/epic-02.md) |
+| **EPIC-03** | Admin Panel | 📅 TODO | REQ-0301~0013 | [epic-03.md](wbs/epic-03.md) |
 
 ## 2. 세부 백로그 요구사항 목록
 
 | Requirement ID | Description | Source File | Status |
 | :--- | :--- | :--- | :--- |
-| - | 등록된 세부 백로그가 없습니다. | - | - |
+| `_support-turn approve` | Chat Conversation | [`ideas/_support-turn approve.md`](./human-sandbox/ideas/_support-turn approve.md) | 📅 TODO |
+| `blueprint-devowls-gaze` | DevOwls Gaze — Project Blueprint v1.1 | [`ideas/blueprint-devowls-gaze.md`](./human-sandbox/ideas/blueprint-devowls-gaze.md) | 📅 TODO |
+| `grilled-result` | grilled-result | [`ideas/grilled-result.md`](./human-sandbox/ideas/grilled-result.md) | 📅 TODO |
+| `user-initial-request` | user-initial-request | [`ideas/user-initial-request.md`](./human-sandbox/ideas/user-initial-request.md) | 📅 TODO |
