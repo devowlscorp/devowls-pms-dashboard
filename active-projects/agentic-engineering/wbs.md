@@ -1,6 +1,6 @@
 # 📊 Agentic Engineering v3.0 - WBS (Work Breakdown Structure)
 
-> **최종 동기화 시각**: 2026-05-24T03:36:15.408Z
+> **최종 동기화 시각**: 2026-05-24T04:05:40.534Z
 > **원격 저장소**: [Agentic-Engineering-v3.0](https://github.com/devowlscorp/Agentic-Engineering-v3.0)
 
 ---
@@ -39,8 +39,8 @@ EPIC (wbs/epic-xx.md)
 
 | REQ ID | Epic | WBS Code | Feature Name | Status | Task Contracts |
 |---|---|---|---|---|---|
-| **REQ-0101** | EPIC-01 | 1.1.1 | Nuxt 4 Init + Dockerfile | 📅 TODO | ✅ DONE |
-| **REQ-0102** | EPIC-01 | 1.1.2 | DB Schema + Prisma Migrate | 📅 TODO | — |
+| **REQ-0101** | EPIC-01 | 1.1.1 | Nuxt 4 Init + Dockerfile | ✅ DONE | — |
+| **REQ-0102** | EPIC-01 | 1.1.2 | DB Schema + Prisma Migrate | 📅 TODO | ✅ DONE |
 | **REQ-0103** | EPIC-01 | 1.1.3 | Better-Auth Setup | 📅 TODO | — |
 | **REQ-0104** | EPIC-01 | 1.1.4 | MinIO S3 Wrapper | 📅 TODO | — |
 | **REQ-0201** | EPIC-02 | 2.1.1 | Game Map Engine (Canvas 2D) | 📅 TODO | — |
