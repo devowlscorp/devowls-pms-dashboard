@@ -1,6 +1,6 @@
 # 📊 Agentic Engineering v3.0 - WBS (Work Breakdown Structure)
 
-> **최종 동기화 시각**: 2026-05-24T08:57:42.976Z
+> **최종 동기화 시각**: 2026-05-24T11:18:51.013Z
 > **원격 저장소**: [Agentic-Engineering-v3.0](https://github.com/devowlscorp/Agentic-Engineering-v3.0)
 
 ---
@@ -43,7 +43,7 @@ EPIC (wbs/epic-xx.md)
 | **REQ-0102** | EPIC-01 | 1.1.2 | DB Schema + Prisma Migrate | ✅ DONE | ✅ DONE |
 | **REQ-0103** | EPIC-01 | 1.1.3 | Better-Auth Setup | ✅ DONE | ✅ DONE |
 | **REQ-0104** | EPIC-01 | 1.1.4 | MinIO S3 Wrapper | ✅ DONE | ✅ DONE |
-| **REQ-0201** | EPIC-02 | 2.1.1 | Game Map Engine (Canvas 2D) | 📅 TODO | — |
+| **REQ-0201** | EPIC-02 | 2.1.1 | Game Map Engine (Canvas 2D) | 📅 TODO | ✅ DONE |
 | **REQ-0202** | EPIC-02 | 2.1.2 | Main Page Layer 1 | 📅 TODO | — |
 | **REQ-0203** | EPIC-02 | 2.1.3 | Card Roller Layer 2 | 📅 TODO | — |
 | **REQ-0204** | EPIC-02 | 2.1.4 | Project Detail Layer 3 | 📅 TODO | — |

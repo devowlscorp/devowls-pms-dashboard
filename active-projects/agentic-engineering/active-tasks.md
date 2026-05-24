@@ -6,4 +6,3 @@
 | :--- | :--- | :--- | :--- | :--- |
 | `checkpoint-design` | Design Phase Checkpoint | Agent | DOING | 2026-05-24 |
 | `checkpoint-implementation` | Implementation Phase Checkpoint | Agent | DOING | 2026-05-24 |
-| `todo-0201` | todo-0201: Game Map Engine — Canvas 2D Interactive World | Agent | UNCLAIMED | Agent: — | 2026-05-24 |
