@@ -185,9 +185,8 @@
       return `${Math.floor(h / 24)}일 전`;
     }
 
-    function renderCard(identity, status) {
-      const { project_id, project_name, repo_url, color } = identity;
-      const { stats, epics = [], active_tasks = [], synced_at } = status;
+    function renderCard(status) {
+      const { project_id, project_name, repo_url, color, stats, epics = [], active_tasks = [], synced_at } = status;
       const { reqs_done, reqs_total, progress_pct } = stats;
 
       const epicsHtml = epics.map(e => `
@@ -251,13 +250,13 @@
 
         const results = await Promise.allSettled(
           registry.projects.map(p =>
-            fetchJson(`projects/${p.id}/status.json`).then(s => ({ identity: p, status: s }))
+            fetchJson(`projects/${p.id}/status.json`)
           )
         );
 
         const cards = results.map(r => {
           if (r.status === 'fulfilled') {
-            return renderCard(r.value.identity, r.value.status);
+            return renderCard(r.value);
           }
           return `<div class="error-msg">❌ ${r.reason.message}</div>`;
         });
@@ -267,7 +266,7 @@
         // Last updated = most recent synced_at across all projects
         const times = results
           .filter(r => r.status === 'fulfilled')
-          .map(r => new Date(r.value.status.synced_at).getTime());
+          .map(r => new Date(r.value.synced_at).getTime());
         if (times.length) {
           const latest = new Date(Math.max(...times));
           document.getElementById('last-updated').textContent =
