@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DevOwls PMS Dashboard</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #22263a;
+      --border: #2e3248;
+      --text: #e2e8f0;
+      --muted: #64748b;
+      --done: #22c55e;
+      --doing: #f59e0b;
+      --todo: #475569;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 2rem 1.5rem;
+    }
+
+    header {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    header h1 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; }
+    header span { font-size: 0.8rem; color: var(--muted); }
+
+    #grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.15s;
+    }
+    .card:hover { border-color: #4a5180; }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 1.25rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .card-header h2 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      flex: 1;
+    }
+    .pct {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .progress-bar {
+      height: 4px;
+      background: var(--border);
+    }
+    .progress-fill {
+      height: 100%;
+      transition: width 0.4s ease;
+    }
+
+    .card-body { padding: 0.875rem 1.25rem; }
+
+    .epics { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 0.875rem; }
+    .epic-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+    }
+    .badge {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 1px 6px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .badge-done  { background: #14532d; color: var(--done); }
+    .badge-doing { background: #451a03; color: var(--doing); }
+    .badge-todo  { background: var(--surface2); color: var(--muted); }
+
+    .epic-name { color: var(--text); flex: 1; }
+    .epic-count { color: var(--muted); font-size: 0.75rem; }
+
+    .tasks-section { border-top: 1px solid var(--border); padding-top: 0.75rem; }
+    .tasks-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+    .task-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      padding: 0.2rem 0;
+      color: var(--text);
+    }
+    .task-row .task-id { color: var(--muted); font-size: 0.72rem; flex-shrink: 0; }
+    .task-row .task-title { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .card-footer {
+      padding: 0.5rem 1.25rem 0.75rem;
+      font-size: 0.72rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+    }
+    .card-footer a { color: var(--muted); text-decoration: none; }
+    .card-footer a:hover { color: var(--text); }
+
+    .loading {
+      text-align: center;
+      padding: 4rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .error-msg {
+      background: #1e0a0a;
+      border: 1px solid #7f1d1d;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      color: #fca5a5;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>DevOwls PMS</h1>
+    <span id="last-updated"></span>
+  </header>
+  <div id="grid"><div class="loading">Loading projects...</div></div>
+
+  <script>
+    const REGISTRY = 'registry.json';
+
+    function statusBadge(s) {
+      const cls = s === 'DONE' ? 'badge-done' : s === 'DOING' ? 'badge-doing' : 'badge-todo';
+      const label = s === 'DONE' ? '✓ done' : s === 'DOING' ? '⚡ doing' : '○ todo';
+      return `<span class="badge ${cls}">${label}</span>`;
+    }
+
+    function taskBadge(s) {
+      const cls = s === 'DONE' ? 'badge-done' : s === 'CLAIMED' || s === 'DOING' ? 'badge-doing' : 'badge-todo';
+      return `<span class="badge ${cls}">${s}</span>`;
+    }
+
+    function relativeTime(iso) {
+      const diff = Date.now() - new Date(iso).getTime();
+      const m = Math.floor(diff / 60000);
+      if (m < 1) return '방금';
+      if (m < 60) return `${m}분 전`;
+      const h = Math.floor(m / 60);
+      if (h < 24) return `${h}시간 전`;
+      return `${Math.floor(h / 24)}일 전`;
+    }
+
+    function renderCard(identity, status) {
+      const { project_id, project_name, repo_url, color } = identity;
+      const { stats, epics = [], active_tasks = [], synced_at } = status;
+      const { reqs_done, reqs_total, progress_pct } = stats;
+
+      const epicsHtml = epics.map(e => `
+        <div class="epic-row">
+          ${statusBadge(e.status)}
+          <span class="epic-name">${e.id}: ${e.name}</span>
+          <span class="epic-count">${e.reqs_done}/${e.reqs_total}</span>
+        </div>`).join('');
+
+      const visibleTasks = active_tasks.slice(0, 3);
+      const tasksHtml = visibleTasks.length
+        ? visibleTasks.map(t => `
+          <div class="task-row">
+            ${taskBadge(t.status)}
+            <span class="task-id">${t.id}</span>
+            <span class="task-title">${t.title}</span>
+          </div>`).join('')
+        : `<div style="font-size:0.78rem;color:var(--muted)">진행 중인 태스크 없음</div>`;
+
+      const moreCount = active_tasks.length - visibleTasks.length;
+
+      return `
+        <div class="card" id="card-${project_id}">
+          <div class="card-header">
+            <div class="dot" style="background:${color}"></div>
+            <h2>${project_name}</h2>
+            <span class="pct">${progress_pct}%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width:${progress_pct}%;background:${color}"></div>
+          </div>
+          <div class="card-body">
+            <div class="epics">${epicsHtml}</div>
+            <div class="tasks-section">
+              <div class="tasks-label">Active Tasks${active_tasks.length ? ` (${active_tasks.length})` : ''}</div>
+              ${tasksHtml}
+              ${moreCount > 0 ? `<div style="font-size:0.72rem;color:var(--muted);margin-top:0.3rem">+${moreCount}개 더</div>` : ''}
+            </div>
+          </div>
+          <div class="card-footer">
+            <span>동기화 ${relativeTime(synced_at)}</span>
+            ${repo_url ? `<a href="${repo_url}" target="_blank">repo ↗</a>` : ''}
+          </div>
+        </div>`;
+    }
+
+    async function fetchJson(url) {
+      const res = await fetch(url + '?t=' + Date.now());
+      if (!res.ok) throw new Error(`${res.status} ${url}`);
+      return res.json();
+    }
+
+    async function load() {
+      const grid = document.getElementById('grid');
+      try {
+        const registry = await fetchJson(REGISTRY);
+        if (!registry.projects || registry.projects.length === 0) {
+          grid.innerHTML = '<div class="loading">등록된 프로젝트가 없습니다.</div>';
+          return;
+        }
+
+        const results = await Promise.allSettled(
+          registry.projects.map(p =>
+            fetchJson(`projects/${p.id}/status.json`).then(s => ({ identity: p, status: s }))
+          )
+        );
+
+        const cards = results.map(r => {
+          if (r.status === 'fulfilled') {
+            return renderCard(r.value.identity, r.value.status);
+          }
+          return `<div class="error-msg">❌ ${r.reason.message}</div>`;
+        });
+
+        grid.innerHTML = cards.join('');
+
+        // Last updated = most recent synced_at across all projects
+        const times = results
+          .filter(r => r.status === 'fulfilled')
+          .map(r => new Date(r.value.status.synced_at).getTime());
+        if (times.length) {
+          const latest = new Date(Math.max(...times));
+          document.getElementById('last-updated').textContent =
+            '마지막 동기화 ' + relativeTime(latest.toISOString());
+        }
+      } catch (err) {
+        grid.innerHTML = `<div class="error-msg">❌ registry.json 로드 실패: ${err.message}</div>`;
+      }
+    }
+
+    load();
+  </script>
+</body>
+</html>
