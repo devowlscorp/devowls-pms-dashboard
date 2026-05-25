@@ -1,0 +1,67 @@
+{
+  "project_id": "devowls-gaze",
+  "project_name": "DevOwls Gaze",
+  "repo_url": "https://github.com/devowlscorp/devowlscorp-devowls-gaze-agms-v3",
+  "color": "#6366f1",
+  "synced_at": "2026-05-25T13:36:27.413Z",
+  "stats": {
+    "reqs_total": 13,
+    "reqs_done": 4,
+    "progress_pct": 31
+  },
+  "epics": [
+    {
+      "id": "EPIC-01",
+      "name": "Foundation Setup",
+      "status": "DONE",
+      "reqs_done": 4,
+      "reqs_total": 4
+    },
+    {
+      "id": "EPIC-02",
+      "name": "Public UI — 3 Layer",
+      "status": "TODO",
+      "reqs_done": 0,
+      "reqs_total": 5
+    },
+    {
+      "id": "EPIC-03",
+      "name": "Admin Panel",
+      "status": "TODO",
+      "reqs_done": 0,
+      "reqs_total": 4
+    }
+  ],
+  "active_tasks": [
+    {
+      "id": "checkpoint-design",
+      "title": "Design Phase Checkpoint",
+      "status": "UNCLAIMED",
+      "assignee": "-"
+    },
+    {
+      "id": "checkpoint-implementation",
+      "title": "Implementation Phase Checkpoint",
+      "status": "UNCLAIMED",
+      "assignee": "-"
+    },
+    {
+      "id": "todo-0202-02",
+      "title": "CompanyHUD.vue + CategoryModal.vue",
+      "status": "UNCLAIMED",
+      "assignee": "-"
+    },
+    {
+      "id": "todo-0203-02",
+      "title": "CardRoller.vue + ProjectCard.vue (CSS Perspective + Roving Tabindex)",
+      "status": "UNCLAIMED",
+      "assignee": "-"
+    },
+    {
+      "id": "todo-0203-03",
+      "title": "useFlipTransition — FLIP + Clone Overlay L2→L3",
+      "status": "UNCLAIMED",
+      "assignee": "-"
+    }
+  ]
+}

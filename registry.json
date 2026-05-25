@@ -1,3 +1,10 @@
 {
-  "projects": []
+  "projects": [
+    {
+      "id": "devowls-gaze",
+      "name": "DevOwls Gaze",
+      "color": "#6366f1",
+      "repo_url": "https://github.com/devowlscorp/devowlscorp-devowls-gaze-agms-v3"
+    }
+  ]
 }
