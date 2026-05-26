@@ -3,11 +3,13 @@
   "project_name": "DevOwls Gaze",
   "repo_url": "",
   "color": "#6366f1",
-  "synced_at": "2026-05-25T13:40:33.182Z",
+  "synced_at": "2026-05-26T09:28:16.976Z",
+  "phase": "implementation",
+  "stage": "merge",
   "stats": {
     "reqs_total": 13,
-    "reqs_done": 4,
-    "progress_pct": 31
+    "reqs_done": 10,
+    "progress_pct": 77
   },
   "epics": [
     {
@@ -21,14 +23,14 @@
       "id": "EPIC-02",
       "name": "Public UI — 3 Layer",
       "status": "TODO",
-      "reqs_done": 0,
+      "reqs_done": 5,
       "reqs_total": 5
     },
     {
       "id": "EPIC-03",
       "name": "Admin Panel",
       "status": "TODO",
-      "reqs_done": 0,
+      "reqs_done": 1,
       "reqs_total": 4
     }
   ],
@@ -42,24 +44,6 @@
     {
       "id": "checkpoint-implementation",
       "title": "Implementation Phase Checkpoint",
-      "status": "UNCLAIMED",
-      "assignee": "-"
-    },
-    {
-      "id": "todo-0202-02",
-      "title": "CompanyHUD.vue + CategoryModal.vue",
-      "status": "UNCLAIMED",
-      "assignee": "-"
-    },
-    {
-      "id": "todo-0203-02",
-      "title": "CardRoller.vue + ProjectCard.vue (CSS Perspective + Roving Tabindex)",
-      "status": "UNCLAIMED",
-      "assignee": "-"
-    },
-    {
-      "id": "todo-0203-03",
-      "title": "useFlipTransition — FLIP + Clone Overlay L2→L3",
       "status": "UNCLAIMED",
       "assignee": "-"
     }
