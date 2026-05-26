@@ -86,13 +86,144 @@
 
     .card-body { padding: 0.875rem 1.25rem; }
 
-    .epics { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 0.875rem; }
-    .epic-row {
+    .epics {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 0.875rem;
+    }
+    .epic-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      background: var(--surface2);
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+    .epic-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.72rem;
+    }
+    .epic-name {
+      color: var(--text);
+      font-weight: 500;
+    }
+    .epic-pct {
+      font-weight: 700;
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+    .epic-progress-bar {
+      height: 3px;
+      background: var(--border);
+      border-radius: 1.5px;
+      overflow: hidden;
+    }
+    .epic-progress-fill {
+      height: 100%;
+      transition: width 0.4s ease;
+    }
+
+    /* Phase styles */
+    .phases-container {
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1rem;
+    }
+    .phases-title {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+    .phases-bar {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      font-size: 0.8rem;
+      justify-content: space-between;
+      position: relative;
+      padding: 0 0.25rem;
+      margin-bottom: 0.875rem;
     }
+    .phase-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3rem;
+      position: relative;
+      z-index: 1;
+    }
+    .phase-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--border);
+      border: 2px solid var(--surface);
+      transition: all 0.3s ease;
+    }
+    .phase-label {
+      font-size: 0.62rem;
+      font-weight: 600;
+      color: var(--muted);
+      transition: color 0.3s ease;
+    }
+    .phase-step.completed .phase-dot {
+      background: var(--done);
+      box-shadow: 0 0 6px rgba(34, 197, 94, 0.3);
+    }
+    .phase-step.completed .phase-label {
+      color: var(--done);
+    }
+    .phase-step.active .phase-dot {
+      background: var(--doing);
+      box-shadow: 0 0 6px rgba(245, 158, 11, 0.4);
+      transform: scale(1.15);
+    }
+    .phase-step.active .phase-label {
+      color: var(--doing);
+      font-weight: 700;
+    }
+    .phase-connector {
+      flex: 1;
+      height: 2px;
+      background: var(--border);
+      margin: 0 -4px;
+      position: relative;
+      top: 6px;
+      z-index: 0;
+      transition: background 0.3s ease;
+    }
+    .phase-connector.completed {
+      background: var(--done);
+    }
+    .phase-connector.active {
+      background: linear-gradient(to right, var(--done), var(--doing));
+    }
+
+    .phase-progress-section {
+      margin-top: 0.6rem;
+    }
+    .phase-progress-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.68rem;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+    }
+    .phase-progress-bar {
+      height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .phase-progress-fill {
+      height: 100%;
+      transition: width 0.4s ease;
+    }
+
     .badge {
       font-size: 0.7rem;
       font-weight: 600;
@@ -104,9 +235,6 @@
     .badge-done  { background: #14532d; color: var(--done); }
     .badge-doing { background: #451a03; color: var(--doing); }
     .badge-todo  { background: var(--surface2); color: var(--muted); }
-
-    .epic-name { color: var(--text); flex: 1; }
-    .epic-count { color: var(--muted); font-size: 0.75rem; }
 
     .tasks-section { border-top: 1px solid var(--border); padding-top: 0.75rem; }
     .tasks-label {
@@ -186,15 +314,55 @@
     }
 
     function renderCard(status) {
-      const { project_id, project_name, repo_url, color, stats, epics = [], active_tasks = [], synced_at } = status;
+      const { project_id, project_name, repo_url, color, stats, epics = [], active_tasks = [], synced_at, phase = 'planning', stage = null } = status;
       const { reqs_done, reqs_total, progress_pct } = stats;
 
-      const epicsHtml = epics.map(e => `
-        <div class="epic-row">
-          ${statusBadge(e.status)}
-          <span class="epic-name">${e.id}: ${e.name}</span>
-          <span class="epic-count">${e.reqs_done}/${e.reqs_total}</span>
-        </div>`).join('');
+      // Calculate Epic Progress
+      const epicsHtml = epics.map(e => {
+        const epicPct = e.reqs_total > 0 ? Math.round((e.reqs_done / e.reqs_total) * 100) : 0;
+        const barColor = e.status === 'DONE' ? 'var(--done)' : e.status === 'DOING' ? 'var(--doing)' : 'var(--muted)';
+        return `
+          <div class="epic-card">
+            <div class="epic-header">
+              <span class="epic-name">${e.id}: ${e.name}</span>
+              <span class="epic-pct">${epicPct}% (${e.reqs_done}/${e.reqs_total})</span>
+            </div>
+            <div class="epic-progress-bar">
+              <div class="epic-progress-fill" style="width:${epicPct}%;background:${barColor}"></div>
+            </div>
+          </div>`;
+      }).join('');
+
+      // Parse current phase & stage
+      const phaseOrder = ['planning', 'design', 'implementation', 'testing'];
+      const currentPhase = (phase || 'planning').toLowerCase();
+      const activeIdx = phaseOrder.indexOf(currentPhase);
+
+      // Phase step and connector styles
+      const pClass = (p) => {
+        const idx = phaseOrder.indexOf(p);
+        if (idx < activeIdx) return 'completed';
+        if (idx === activeIdx) return 'active';
+        return 'todo';
+      };
+
+      const cClass = (p) => {
+        const idx = phaseOrder.indexOf(p);
+        if (idx <= activeIdx) return 'completed';
+        return 'todo';
+      };
+
+      // Calculate phase progress percentage
+      let phase_progress_pct = 0;
+      if (currentPhase === 'planning') {
+        phase_progress_pct = 100;
+      } else if (currentPhase === 'design') {
+        phase_progress_pct = 100;
+      } else if (currentPhase === 'implementation') {
+        phase_progress_pct = progress_pct;
+      } else if (currentPhase === 'testing') {
+        phase_progress_pct = 50; // Active testing
+      }
 
       const visibleTasks = active_tasks.slice(0, 3);
       const tasksHtml = visibleTasks.length
@@ -215,11 +383,54 @@
             <h2>${project_name}</h2>
             <span class="pct">${progress_pct}%</span>
           </div>
+          
           <div class="progress-bar">
             <div class="progress-fill" style="width:${progress_pct}%;background:${color}"></div>
           </div>
+
           <div class="card-body">
-            <div class="epics">${epicsHtml}</div>
+            <!-- Phase Progress Horizontal Bar -->
+            <div class="phases-container">
+              <div class="phases-title">Development Phase</div>
+              <div class="phases-bar">
+                <div class="phase-step ${pClass('planning')}">
+                  <span class="phase-label">Planning</span>
+                  <div class="phase-dot"></div>
+                </div>
+                <div class="phase-connector ${cClass('design')}"></div>
+                <div class="phase-step ${pClass('design')}">
+                  <span class="phase-label">Design</span>
+                  <div class="phase-dot"></div>
+                </div>
+                <div class="phase-connector ${cClass('implementation')}"></div>
+                <div class="phase-step ${pClass('implementation')}">
+                  <span class="phase-label">Implementation</span>
+                  <div class="phase-dot"></div>
+                </div>
+                <div class="phase-connector ${cClass('testing')}"></div>
+                <div class="phase-step ${pClass('testing')}">
+                  <span class="phase-label">Testing</span>
+                  <div class="phase-dot"></div>
+                </div>
+              </div>
+
+              <!-- Phase Progress Bar -->
+              <div class="phase-progress-section">
+                <div class="phase-progress-header">
+                  <span>Phase Progress (${currentPhase.toUpperCase()}${stage ? ` - ${stage.toUpperCase()}` : ''})</span>
+                  <span>${phase_progress_pct}%</span>
+                </div>
+                <div class="phase-progress-bar">
+                  <div class="phase-progress-fill" style="width:${phase_progress_pct}%;background:${color}"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="epics">
+              <div class="phases-title">Epic Progress</div>
+              ${epicsHtml}
+            </div>
+            
             <div class="tasks-section">
               <div class="tasks-label">Active Tasks${active_tasks.length ? ` (${active_tasks.length})` : ''}</div>
               ${tasksHtml}
