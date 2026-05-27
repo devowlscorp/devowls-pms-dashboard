@@ -3,49 +3,14 @@
   "project_name": "DevOwls Gaze",
   "repo_url": "",
   "color": "#6366f1",
-  "synced_at": "2026-05-27T14:26:29.876Z",
+  "synced_at": "2026-05-27T14:52:26.697Z",
   "phase": "complete",
   "stage": "done",
   "stats": {
-    "reqs_total": 13,
-    "reqs_done": 13,
-    "progress_pct": 100
+    "reqs_total": 0,
+    "reqs_done": 0,
+    "progress_pct": 0
   },
-  "epics": [
-    {
-      "id": "EPIC-01",
-      "name": "Foundation Setup",
-      "status": "DONE",
-      "reqs_done": 4,
-      "reqs_total": 4
-    },
-    {
-      "id": "EPIC-02",
-      "name": "Public UI — 3 Layer",
-      "status": "TODO",
-      "reqs_done": 5,
-      "reqs_total": 5
-    },
-    {
-      "id": "EPIC-03",
-      "name": "Admin Panel",
-      "status": "TODO",
-      "reqs_done": 4,
-      "reqs_total": 4
-    }
-  ],
-  "active_tasks": [
-    {
-      "id": "checkpoint-design",
-      "title": "Design Phase Checkpoint",
-      "status": "UNCLAIMED",
-      "assignee": "-"
-    },
-    {
-      "id": "checkpoint-implementation",
-      "title": "Implementation Phase Checkpoint",
-      "status": "UNCLAIMED",
-      "assignee": "-"
-    }
-  ]
+  "epics": [],
+  "active_tasks": []
 }
