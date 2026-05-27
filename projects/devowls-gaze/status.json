@@ -3,9 +3,9 @@
   "project_name": "DevOwls Gaze",
   "repo_url": "",
   "color": "#6366f1",
-  "synced_at": "2026-05-26T21:52:12.598Z",
-  "phase": "testing",
-  "stage": "integration",
+  "synced_at": "2026-05-27T14:26:29.876Z",
+  "phase": "complete",
+  "stage": "done",
   "stats": {
     "reqs_total": 13,
     "reqs_done": 13,
