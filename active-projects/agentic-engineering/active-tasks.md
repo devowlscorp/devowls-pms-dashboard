@@ -4,5 +4,4 @@
 
 | Task ID | Task Description | Assignee | Status | Last Modified |
 | :--- | :--- | :--- | :--- | :--- |
-| `checkpoint-design` | Design Phase Checkpoint | Agent | DOING | 2026-05-26 |
-| `checkpoint-implementation` | Implementation Phase Checkpoint | Agent | DOING | 2026-05-26 |
+| `checkpoint-implementation` | Implementation Phase Checkpoint | Agent | DOING | 2026-05-29 |
