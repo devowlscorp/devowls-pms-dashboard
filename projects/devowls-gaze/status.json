@@ -3,14 +3,21 @@
   "project_name": "DevOwls Gaze (v1.2.0)",
   "repo_url": "",
   "color": "#6366f1",
-  "synced_at": "2026-05-30T01:06:25.049Z",
-  "phase": "unknown",
-  "stage": null,
+  "synced_at": "2026-05-30T12:41:21.430Z",
+  "phase": "implementation",
+  "stage": "stage-i-define",
   "stats": {
     "reqs_total": 0,
     "reqs_done": 0,
     "progress_pct": 0
   },
   "epics": [],
-  "active_tasks": []
+  "active_tasks": [
+    {
+      "id": "checkpoint-implementation",
+      "title": "Implementation Phase Checkpoint",
+      "status": "UNCLAIMED",
+      "assignee": "-"
+    }
+  ]
 }
