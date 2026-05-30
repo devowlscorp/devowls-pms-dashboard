@@ -1,6 +1,6 @@
 # 📊 Agentic Engineering v3.0 - WBS (Work Breakdown Structure)
 
-> **최종 동기화 시각**: 2026-05-29T20:31:13.621Z
+> **최종 동기화 시각**: 2026-05-30T21:17:07.012Z
 > **원격 저장소**: [Agentic-Engineering-v3.0](https://github.com/devowlscorp/Agentic-Engineering-v3.0)
 
 ---
@@ -29,7 +29,7 @@ EPIC (wbs/epic-xx.md)
 
 | Epic | Name | Status | REQs | Detail |
 |---|---|---|---|---|
-| _(No epics defined. Run /phase-planning to begin.)_ | | | | |
+| EPIC-01 | Main Page 3D Interaction Improvement | 📅 TODO | 4 | [epic-01.md](wbs/epic-01.md) |
 
 ---
 
@@ -37,7 +37,10 @@ EPIC (wbs/epic-xx.md)
 
 | REQ ID | Epic | WBS Code | Feature Name | Status | Task Contracts |
 |---|---|---|---|---|---|
-| _(Empty. Epics and REQs will be registered here after /phase-planning.)_ | | | | | |
+| REQ-0101 | EPIC-01 | WBS-01.01 | 3D Scene Environment | ✅ DONE | — |
+| REQ-0102 | EPIC-01 | WBS-01.02 | Category Pavilion Booths | ✅ DONE | — |
+| REQ-0103 | EPIC-01 | WBS-01.03 | Camera & Avatar Navigation | ✅ DONE | — |
+| REQ-0104 | EPIC-01 | WBS-01.04 | Zoom Interaction & Modal | 📅 TODO | — |
 
 ---
 

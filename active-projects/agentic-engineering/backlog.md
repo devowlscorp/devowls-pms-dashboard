@@ -6,12 +6,14 @@
 
 | Epic | Status | Progress | Notes |
 | :--- | :--- | :--- | :--- |
-| - | 🎉 대기 중인 에픽이 없습니다. 모든 에픽이 완료되었습니다. | - | - |
+| EPIC-01 | Main Page 3D Interaction Improvement | 📅 TODO | 4 | [epic-01.md](wbs/epic-01.md) |
 
 ## 2. 세부 백로그 요구사항 목록
 
 | Requirement ID | Description | Source File | Status |
 | :--- | :--- | :--- | :--- |
+| `Planning grill-me 개선방안` | **🏷️ 1\. 용어 정의 (Refining the Terms)** | [`ideas/Planning grill-me 개선방안.md`](./human-sandbox/ideas/Planning grill-me 개선방안.md) | 📅 TODO |
+| `UX_Planning_설계_대화기록` | Chat Conversation | [`ideas/UX_Planning_설계_대화기록.md`](./human-sandbox/ideas/UX_Planning_설계_대화기록.md) | 📅 TODO |
 | `_support-turn approve` | Chat Conversation | [`ideas/_support-turn approve.md`](./human-sandbox/ideas/_support-turn approve.md) | 📅 TODO |
 | `andrej-karpathy-llm-wiki` | LLM Wiki | [`ideas/andrej-karpathy-llm-wiki.md`](./human-sandbox/ideas/andrej-karpathy-llm-wiki.md) | 📅 TODO |
 | `andrej-karpathy-skills-CLAUDE` | CLAUDE.md | [`ideas/andrej-karpathy-skills-CLAUDE.md`](./human-sandbox/ideas/andrej-karpathy-skills-CLAUDE.md) | 📅 TODO |
