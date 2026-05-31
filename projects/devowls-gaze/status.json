@@ -3,9 +3,9 @@
   "project_name": "DevOwls Gaze (v1.2.0)",
   "repo_url": "",
   "color": "#6366f1",
-  "synced_at": "2026-05-31T09:59:36.864Z",
-  "phase": "design",
-  "stage": "stage-d-workflow-design",
+  "synced_at": "2026-05-31T11:45:55.847Z",
+  "phase": "implementation",
+  "stage": "stage-i-merge",
   "stats": {
     "reqs_total": 0,
     "reqs_done": 0,
