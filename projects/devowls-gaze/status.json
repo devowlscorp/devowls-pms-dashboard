@@ -3,9 +3,9 @@
   "project_name": "DevOwls Gaze (v1.2.0)",
   "repo_url": "",
   "color": "#6366f1",
-  "synced_at": "2026-05-30T21:18:26.520Z",
-  "phase": "implementation",
-  "stage": "merge",
+  "synced_at": "2026-05-31T09:59:36.864Z",
+  "phase": "design",
+  "stage": "stage-d-workflow-design",
   "stats": {
     "reqs_total": 0,
     "reqs_done": 0,
@@ -13,6 +13,12 @@
   },
   "epics": [],
   "active_tasks": [
+    {
+      "id": "checkpoint-design",
+      "title": "Design Phase Checkpoint",
+      "status": "UNCLAIMED",
+      "assignee": "-"
+    },
     {
       "id": "checkpoint-implementation",
       "title": "Implementation Phase Checkpoint",
