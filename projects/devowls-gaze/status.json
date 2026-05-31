@@ -3,9 +3,9 @@
   "project_name": "DevOwls Gaze (v1.2.0)",
   "repo_url": "",
   "color": "#6366f1",
-  "synced_at": "2026-05-31T11:52:07.033Z",
+  "synced_at": "2026-05-31T11:54:53.046Z",
   "phase": "implementation",
-  "stage": "stage-i-code",
+  "stage": "define",
   "stats": {
     "reqs_total": 0,
     "reqs_done": 0,
@@ -22,6 +22,18 @@
     {
       "id": "checkpoint-implementation",
       "title": "Implementation Phase Checkpoint",
+      "status": "UNCLAIMED",
+      "assignee": "-"
+    },
+    {
+      "id": "todo-0203-01",
+      "title": "rAF Loop and Owl Walking Frame Animations",
+      "status": "UNCLAIMED",
+      "assignee": "-"
+    },
+    {
+      "id": "todo-0203-02",
+      "title": "Hotspot Proximity Detection and Overlay Transitions",
       "status": "UNCLAIMED",
       "assignee": "-"
     }
