@@ -3,7 +3,7 @@
   "project_name": "DevOwls Gaze (v1.2.0)",
   "repo_url": "",
   "color": "#6366f1",
-  "synced_at": "2026-05-31T11:54:53.046Z",
+  "synced_at": "2026-05-31T11:55:27.745Z",
   "phase": "implementation",
   "stage": "define",
   "stats": {
@@ -26,14 +26,8 @@
       "assignee": "-"
     },
     {
-      "id": "todo-0203-01",
-      "title": "rAF Loop and Owl Walking Frame Animations",
-      "status": "UNCLAIMED",
-      "assignee": "-"
-    },
-    {
-      "id": "todo-0203-02",
-      "title": "Hotspot Proximity Detection and Overlay Transitions",
+      "id": "todo-0204-01",
+      "title": "Asset Mapping and Depth Scale Renderings",
       "status": "UNCLAIMED",
       "assignee": "-"
     }
