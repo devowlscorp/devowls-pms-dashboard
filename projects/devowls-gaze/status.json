@@ -3,7 +3,7 @@
   "project_name": "DevOwls Gaze (v1.2.0)",
   "repo_url": "",
   "color": "#6366f1",
-  "synced_at": "2026-06-01T14:15:51.025Z",
+  "synced_at": "2026-06-02T22:06:03.263Z",
   "phase": "planning",
   "stage": null,
   "stats": {
@@ -12,5 +12,30 @@
     "progress_pct": 0
   },
   "epics": [],
-  "active_tasks": []
+  "active_tasks": [
+    {
+      "id": "cloud_a_round1_response",
+      "title": "[cloud_a Round 1 응답] 모바일 카메라/핫스팟 UI 버그 검토 의견",
+      "status": "UNCLAIMED",
+      "assignee": "-"
+    },
+    {
+      "id": "impl-plan-mobile-camera-hotspot",
+      "title": "모바일 카메라 및 핫스팟 UI 짤림 개선 구현 계획 (합의 완료)",
+      "status": "UNCLAIMED",
+      "assignee": "-"
+    },
+    {
+      "id": "impl-review-mobile-camera-hotspot",
+      "title": "모바일 카메라 및 핫스팟 UI 짤림 개선 구현 내역 리뷰",
+      "status": "UNCLAIMED",
+      "assignee": "-"
+    },
+    {
+      "id": "review-mobile-camera-hotspot",
+      "title": "검토 대상: 모바일 올빼미 카메라 추적 & 핫스팟 UI 짤림 이슈",
+      "status": "UNCLAIMED",
+      "assignee": "-"
+    }
+  ]
 }
