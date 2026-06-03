@@ -3,7 +3,7 @@
   "project_name": "DevOwls Gaze (v1.6.0)",
   "repo_url": "",
   "color": "#6366f1",
-  "synced_at": "2026-06-03T04:38:30.741Z",
+  "synced_at": "2026-06-03T08:10:34.775Z",
   "phase": "planning",
   "stage": null,
   "stats": {
@@ -12,5 +12,18 @@
     "progress_pct": 0
   },
   "epics": [],
-  "active_tasks": []
+  "active_tasks": [
+    {
+      "id": "cloud_b_review_response",
+      "title": "UI Spec Refactoring — Cloud B 검토 응답",
+      "status": "UNCLAIMED",
+      "assignee": "-"
+    },
+    {
+      "id": "todo-0000-adhoc",
+      "title": "Ad-hoc Task",
+      "status": "UNCLAIMED",
+      "assignee": "-"
+    }
+  ]
 }
